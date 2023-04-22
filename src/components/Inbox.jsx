@@ -3,7 +3,7 @@ import { Landing } from "./Landing";
 import { Link } from "react-router-dom";
 
 export const Inbox = () => {
-  const { inboxs } = useEmail();
+  const { inboxs, handleRead } = useEmail();
   return (
     <div>
       <Landing />
@@ -11,7 +11,9 @@ export const Inbox = () => {
       {inboxs.map((inbox) => (
         <li key={inbox.id}>
           <Link to={`/inbox/${inbox.id}`}>{inbox.message}</Link>
-          {inbox.read ? <button>Mark as Read</button> : null}
+          {inbox.read ? (
+            <button onClick={() => handleRead(inbox.id)}>Mark as Read</button>
+          ) : null}
         </li>
       ))}
     </div>

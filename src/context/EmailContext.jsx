@@ -21,8 +21,16 @@ export const EmailProvider = ({ children }) => {
   useEffect(() => {
     getData();
   }, []);
+  const handleRead = (itemId) => {
+    let tempItem = inboxs.filter((inbox) => inbox.id == itemId);
+    let replacement = { ...tempItem[0], read: false };
+    let newInbox = inboxs.map((inboxItem) =>
+      inboxItem.id !== itemId ? inboxItem : replacement
+    );
+    setInboxs(newInbox);
+  };
   return (
-    <EmailContext.Provider value={{ inboxs, sents }}>
+    <EmailContext.Provider value={{ inboxs, sents, handleRead }}>
       {children}
     </EmailContext.Provider>
   );

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Sent = () => {
   const { sents } = useEmail();
+
   return (
     <div>
       <Landing />
